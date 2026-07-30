@@ -31,11 +31,9 @@ pipeline {
         }
     }
 }
-
         stage('Deploy to Kubernetes') {
             steps {
-                sh '''
-                kubectl set image deployment/myapp myapp=girraj0021/myapp:${BUILD_NUMBER}
-                '''
+                sh 'kubectl apply -f k8s/deployment.yaml'
+                sh 'kubectl apply -f k8s/service.yaml'
     }
 }
