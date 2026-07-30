@@ -31,3 +31,10 @@ pipeline {
         }
     }
 }
+stage('Deploy to Kubernetes') {
+    steps {
+        sh '''
+        kubectl set image deployment/myapp myapp=girraj0021/myapp:${BUILD_NUMBER}
+        '''
+    }
+}
